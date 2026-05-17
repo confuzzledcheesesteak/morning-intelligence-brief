@@ -1,46 +1,43 @@
--- Morning Intelligence Brief Supabase schema
--- Run in Supabase SQL editor. Uses public read only if you choose to expose archive.
-
 create extension if not exists pgcrypto;
 
-create table if not exists briefs (
+create table if not exists public.briefs (
   id text primary key,
   brief_date date not null,
   title text not null,
-  threat_score numeric(3,1) not null check (threat_score >= 1 and threat_score <= 5),
+  executive_summary text not null,
+  overall_threat_score numeric(3,1) not null default 0,
   payload jsonb not null,
-  generated_at timestamptz not null default now()
+  pdf_url text,
+  created_at timestamptz not null default now()
 );
 
-create index if not exists briefs_generated_at_idx on briefs (generated_at desc);
-create index if not exists briefs_brief_date_idx on briefs (brief_date desc);
-
-create table if not exists subscriptions (
+create table if not exists public.subscribers (
   id uuid primary key default gen_random_uuid(),
   email text unique not null,
   delivery_time text not null default '07:00',
-  timezone text not null default 'America/Los_Angeles',
-  regions text[] not null default '{}',
-  minimum_threat_level numeric(3,1) not null default 1,
-  active boolean not null default true,
+  timezone text not null default 'America/New_York',
+  region_filters text[] not null default array['Global','Europe','Middle East','Indo-Pacific','Americas','Africa'],
+  is_active boolean not null default true,
   created_at timestamptz not null default now(),
   updated_at timestamptz not null default now()
 );
 
-alter table briefs enable row level security;
-alter table subscriptions enable row level security;
+create table if not exists public.news_articles (
+  id uuid primary key default gen_random_uuid(),
+  title text not null,
+  source text not null,
+  url text unique not null,
+  published_at timestamptz,
+  region text,
+  relevance_score numeric(3,2),
+  created_at timestamptz not null default now()
+);
 
--- Serverless functions use SUPABASE_SERVICE_ROLE_KEY and bypass RLS.
--- Optional public archive policy for read-only frontend access:
--- create policy "Public can read brief archive" on briefs for select using (true);
+alter table public.briefs enable row level security;
+alter table public.subscribers enable row level security;
+alter table public.news_articles enable row level security;
 
-create or replace function set_updated_at()
-returns trigger as $$
-begin
-  new.updated_at = now();
-  return new;
-end;
-$$ language plpgsql;
-
-drop trigger if exists subscriptions_updated_at on subscriptions;
-create trigger subscriptions_updated_at before update on subscriptions for each row execute function set_updated_at();
+create policy "Public can read brief archive" on public.briefs for select using (true);
+create policy "Service role manages briefs" on public.briefs for all using (auth.role() = 'service_role');
+create policy "Service role manages subscribers" on public.subscribers for all using (auth.role() = 'service_role');
+create policy "Service role manages news" on public.news_articles for all using (auth.role() = 'service_role');
