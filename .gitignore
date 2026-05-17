@@ -1,0 +1,13 @@
+node_modules
+dist
+.netlify
+.env
+.env.local
+.DS_Store
+coverage
+*.log
+*.tsbuildinfo
+vite.config.js
+vite.config.d.ts
+netlify/functions/*.js
+netlify/functions/*.d.ts
