@@ -1,15 +1,15 @@
 # Deployment Checklist
 
-- [ ] `npm install` completed
-- [ ] `.env` created locally from `.env.example`
-- [ ] Supabase schema applied
-- [ ] Netlify env vars configured
-- [ ] `npm run build` passes
-- [ ] `/api/generate-brief` returns cited JSON
-- [ ] `/api/pdf` returns PDF
-- [ ] `/api/subscribe` writes to Supabase
-- [ ] Scheduled `daily-brief` function enabled in Netlify
-- [ ] GitHub repo connected to Netlify
-- [ ] Production deploy successful
-- [ ] Custom domain configured, if needed
-- [ ] API keys rotated if exposed during development
+- [ ] `npm install`
+- [ ] `npm run build`
+- [ ] Create Supabase project and run `supabase/schema.sql`
+- [ ] Add Netlify environment variables from `.env.example`
+- [ ] Connect GitHub repository to Netlify
+- [ ] Verify build command is `npm run build`
+- [ ] Verify publish directory is `dist`
+- [ ] Verify functions directory is `netlify/functions`
+- [ ] Trigger production deploy
+- [ ] Test `/api/generate-brief`
+- [ ] Test email subscription form
+- [ ] Trigger scheduled function manually in Netlify dashboard
+- [ ] Add custom domain if desired

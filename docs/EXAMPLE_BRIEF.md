@@ -1,36 +1,34 @@
 # Example Intelligence Brief
 
-> Demo content only. Do not treat as current intelligence.
-
-## Morning Intelligence Brief — Demo
-
-Threat score: 3.4 / 5
+Date: 2026-05-16
+Title: Morning Intelligence Brief
+Overall threat score: 3.6/5
 
 ## Executive Summary
 
-This demo brief shows the one-page structure. Production briefs are created from GDELT, RSS feeds, optional NewsAPI results, and OpenAI synthesis. Every selected development must include source links.
+Demo brief using example data. Production briefs are generated only from cited public sources retrieved at runtime; uncited claims are excluded by the citation checker.
 
 ## Top 5 Global Developments
 
-1. NATO allies review deterrence posture after regional escalation signals.
-2. Indo-Pacific governments assess maritime and Taiwan Strait risk indicators.
-3. Middle East energy and ceasefire diplomacy remain linked risk vectors.
-4. Sanctions enforcement and export controls create economic spillover risk.
-5. Cyber incidents remain a cross-regional warning indicator.
+1. NATO readiness and deterrence remain central to European security planning.
+   - Factual reporting: Demo item. Production must cite public reporting.
+   - Analysis: NATO posture affects deterrence, defense budgets, and U.S. commitments.
+   - Threat score: 4/5.
+   - Source: https://www.nato.int/cps/en/natohq/news.htm
 
-## Threat Ranking
+2. Taiwan Strait activity monitored for escalation indicators.
+   - Factual reporting: Demo item. Production must cite public reporting.
+   - Analysis: Stability is linked to U.S.-China relations and semiconductor supply chains.
+   - Threat score: 4/5.
+   - Source: https://www.mnd.gov.tw/english/
 
-- Military escalation: 4/5
-- Economic impact: 3/5
-- Diplomatic importance: 5/5
-- Humanitarian impact: 3/5
-- U.S. policy relevance: 5/5
+## What To Watch Next
 
-## Why It Matters
+- Official NATO communiqués.
+- Defense ministry statements.
+- CISA advisories and official attribution statements.
+- UN and humanitarian access reporting.
 
-Students and researchers can quickly identify which public developments deserve deeper source review.
+## Citation Standard
 
-## Sources
-
-- NATO newsroom: https://www.nato.int/cps/en/natohq/news.htm
-- GDELT Project: https://www.gdeltproject.org/
+No factual claim should appear in a production brief unless it is traceable to a public URL collected during the news-gathering stage.

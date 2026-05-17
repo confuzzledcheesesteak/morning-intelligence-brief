@@ -4,6 +4,10 @@ dist
 .env
 .env.local
 .DS_Store
+coverage
 *.log
 *.tsbuildinfo
-deno.lock
+vite.config.js
+vite.config.d.ts
+netlify/functions/*.js
+netlify/functions/*.d.ts

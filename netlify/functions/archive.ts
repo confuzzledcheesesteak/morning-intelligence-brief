@@ -1,10 +1,3 @@
 import type { Handler } from '@netlify/functions';
-import { json, supabaseAdmin } from './shared';
-
-export const handler: Handler = async () => {
-  const supabase = supabaseAdmin();
-  if (!supabase) return json([]);
-  const { data, error } = await supabase.from('briefs').select('payload').order('generated_at', { ascending: false }).limit(30);
-  if (error) return json({ error: error.message }, 500);
-  return json((data || []).map((row) => row.payload));
-};
+import { json, supabaseAdmin } from './_shared';
+export const handler: Handler = async () => { const db=supabaseAdmin(); if(!db) return json(200,{briefs:[]}); const {data,error}=await db.from('briefs').select('id, brief_date, title, executive_summary, overall_threat_score, created_at').order('brief_date',{ascending:false}).limit(30); if(error) return json(500,{error:error.message}); return json(200,{briefs:data}); };
